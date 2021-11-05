@@ -4,7 +4,7 @@
 python3 -m venv env
 source env/bin/activate
 pip3 install numpy pygame
-python3 connect4.py 
+python3 src/connect4.py 
 ```
 
 # References:
