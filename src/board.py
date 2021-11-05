@@ -31,6 +31,12 @@ class Board:
         b.state = self.state.copy()
         return b
 
+    def get_n_rows(self):
+        return self.n_rows
+
+    def get_n_cols(self):
+        return self.n_cols
+
     def get_state(self):
         return self.state
 
