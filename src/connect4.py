@@ -31,43 +31,39 @@ algo = Minimax()
 # Gameplay loop
 
 while not game_over:
-	curr_piece = turn
-
+	# Player's turn
+	# Get frame and events from pygame graphics renderer. Get the column clicked by the player
 	if turn == PLAYER:
-		# Get frame and events from pygame graphics renderer. Get the column clicked by the player
+		curr_piece = PLAYER_PIECE
 		col = renderer.handle_events()
-		if col != None:
-			if board.is_valid_location(col):
-				row = board.get_next_open_row(col)
-				board.drop_piece(row, col, PLAYER_PIECE)
 
-				if board.is_winning_move(PLAYER_PIECE):
-					print('Player won')
-					game_over = True
-
-				turn += 1
-				turn = turn % 2
-
-				board.print()
-				renderer.draw(board.get_state())
-
+	# AI's turn
+	# Use RL to get the best next move
 	if turn == AI and not game_over:
-		# Use RL to get the best next move
+		curr_piece = AI_PIECE
 		col, minimax_score = algo.get_best_move(board, 5, -math.inf, math.inf, True)
 
-		if board.is_valid_location(col):
-			row = board.get_next_open_row(col)
-			board.drop_piece(row, col, AI_PIECE)
+	# Drop piece for current move
+	if col != None and board.is_valid_location(col):
+		row = board.get_next_open_row(col)
+		print(curr_piece)
+		board.drop_piece(row, col, curr_piece)
 
-			if board.is_winning_move(AI_PIECE):
-				print('AI won')
-				game_over = True
+		if board.is_winning_move(curr_piece):
+			print(curr_piece, 'won')
+			game_over = True
 
-			board.print()
-			renderer.draw(board.get_state())
+		board.print()
+		renderer.draw(board.get_state())
 
-			turn += 1
-			turn = turn % 2
+		turn += 1
+		turn = turn % 2
 
-	# if game_over:
-		# renderer.handle_game_end(winner)
+	if game_over:
+		if curr_piece == PLAYER_PIECE:
+			winner = 'PLAYER'
+		else:
+			winner = 'AI'
+
+		# Prints out who won and waits 3 seconds before closing game
+		renderer.handle_game_end(winner)

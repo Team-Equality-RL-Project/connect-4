@@ -8,8 +8,6 @@ RED = (255,0,0)
 YELLOW = (255,255,0)
 SQUARESIZE = 100
 
-myfont = pygame.font.SysFont("monospace", 75)
-
 class Renderer:
     def __init__(self, n_rows, n_cols, piece_a, piece_b):
         self.n_rows = n_rows
@@ -21,9 +19,8 @@ class Renderer:
         self.piece_a = piece_a # player piece
         self.piece_b = piece_b # AI piece
 
-        # myfont = pygame.font.SysFont("monospace", 75)
-
         pygame.init()
+        self.font = pygame.font.SysFont("monospace", 75)
         self.screen = pygame.display.set_mode(self.size)
         self.draw_board()
         pygame.display.update()
@@ -64,8 +61,8 @@ class Renderer:
             pygame.display.update()
         return None
     
-    def handle_game_end(self):
-        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+    def handle_game_end(self, winner):
+        label = self.font.render(winner + " wins!!", 1, YELLOW)
         self.screen.blit(label, (40,10))
         pygame.display.update()
         pygame.time.wait(3000)
