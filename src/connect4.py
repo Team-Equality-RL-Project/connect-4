@@ -1,7 +1,7 @@
 import random
 import math
 
-from board import Board
+from board import Board, PLAYER_PIECE, AI_PIECE, PLAYER, AI
 from renderer import Renderer
 from minimax import Minimax
 
@@ -11,14 +11,10 @@ game_over = False
 
 ROW_COUNT = 6
 COLUMN_COUNT = 7
-board = Board(ROW_COUNT, COLUMN_COUNT)
+N_IN_A_ROW = 4
+board = Board(ROW_COUNT, COLUMN_COUNT, N_IN_A_ROW)
 board.print()
 
-EMPTY = 0
-PLAYER_PIECE = 1
-AI_PIECE = 2
-PLAYER = 0
-AI = 1
 renderer = Renderer(ROW_COUNT, COLUMN_COUNT, PLAYER_PIECE, AI_PIECE)
 renderer.draw(board.get_state())
 
@@ -46,7 +42,6 @@ while not game_over:
 	# Drop piece for current move
 	if col != None and board.is_valid_location(col):
 		row = board.get_next_open_row(col)
-		print(curr_piece)
 		board.drop_piece(row, col, curr_piece)
 
 		if board.is_winning_move(curr_piece):

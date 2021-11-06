@@ -1,11 +1,7 @@
 import math
 import random
 
-EMPTY = 0
-PLAYER_PIECE = 1
-AI_PIECE = 2
-
-WINDOW_LENGTH = 4
+from board import EMPTY, PLAYER_PIECE, AI_PIECE
 
 class Minimax():
     def __init__(self):
@@ -29,7 +25,7 @@ class Minimax():
 
         return score
 
-    def score_position(self, board_state, board_n_rows, board_n_cols, piece):
+    def score_position(self, board_state, board_n_rows, board_n_cols, n_in_a_row, piece):
         score = 0
 
         ## Score center column
@@ -41,25 +37,25 @@ class Minimax():
         for r in range(board_n_rows):
             row_array = [int(i) for i in list(board_state[r,:])]
             for c in range(board_n_cols-3):
-                window = row_array[c:c+WINDOW_LENGTH]
+                window = row_array[c:c+n_in_a_row]
                 score += self.evaluate_window(window, piece)
 
         ## Score Vertical
         for c in range(board_n_cols):
             col_array = [int(i) for i in list(board_state[:,c])]
             for r in range(board_n_rows-3):
-                window = col_array[r:r+WINDOW_LENGTH]
+                window = col_array[r:r+n_in_a_row]
                 score += self.evaluate_window(window, piece)
 
         ## Score posiive sloped diagonal
         for r in range(board_n_rows-3):
             for c in range(board_n_cols-3):
-                window = [board_state[r+i][c+i] for i in range(WINDOW_LENGTH)]
+                window = [board_state[r+i][c+i] for i in range(n_in_a_row)]
                 score += self.evaluate_window(window, piece)
 
         for r in range(board_n_rows-3):
             for c in range(board_n_cols-3):
-                window = [board_state[r+3-i][c+i] for i in range(WINDOW_LENGTH)]
+                window = [board_state[r+3-i][c+i] for i in range(n_in_a_row)]
                 score += self.evaluate_window(window, piece)
 
         return score
@@ -76,7 +72,7 @@ class Minimax():
                 else: # Game is over, no more valid moves
                     return (None, 0)
             else: # Depth is zero
-                return (None, self.score_position(board.get_state(), board.get_n_rows(), board.get_n_cols(), AI_PIECE))
+                return (None, self.score_position(board.get_state(), board.get_n_rows(), board.get_n_cols(), board.get_n_in_a_row(), AI_PIECE))
         if maximizingPlayer:
             value = -math.inf
             column = random.choice(valid_locations)

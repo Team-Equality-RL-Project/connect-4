@@ -1,9 +1,16 @@
 import numpy as np
 
+EMPTY = 0
+PLAYER_PIECE = 1
+AI_PIECE = 2
+PLAYER = 0
+AI = 1
+
 class Board:
-    def __init__(self, n_rows, n_cols):
+    def __init__(self, n_rows, n_cols, n_in_a_row):
         self.n_rows = n_rows
         self.n_cols = n_cols
+        self.n_in_a_row = n_in_a_row
         self.state = np.zeros((n_rows, n_cols))
 
     def drop_piece(self, row, col, piece):
@@ -27,7 +34,7 @@ class Board:
     # Make a deep copy of the class
     def copy(self):
         BoardCopy = type('Board', Board.__bases__, dict(Board.__dict__))
-        b = BoardCopy(self.n_rows, self.n_cols)
+        b = BoardCopy(self.n_rows, self.n_cols, self.n_in_a_row)
         b.state = self.state.copy()
         return b
 
@@ -36,6 +43,9 @@ class Board:
 
     def get_n_cols(self):
         return self.n_cols
+    
+    def get_n_in_a_row(self):
+        return self.n_in_a_row
 
     def get_state(self):
         return self.state
