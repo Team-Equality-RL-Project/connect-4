@@ -8,6 +8,8 @@ RED = (255,0,0)
 YELLOW = (255,255,0)
 SQUARESIZE = 100
 
+myfont = pygame.font.SysFont("monospace", 75)
+
 class Renderer:
     def __init__(self, n_rows, n_cols, piece_a, piece_b):
         self.n_rows = n_rows
@@ -25,15 +27,6 @@ class Renderer:
         self.screen = pygame.display.set_mode(self.size)
         self.draw_board()
         pygame.display.update()
-    
-    def handle_exit(self):
-        sys.exit()
-    
-    def handle_motion(self, event, turn):
-        pygame.draw.rect(self.screen, BLACK, (0,0, self.width, SQUARESIZE))
-        posx = event.pos[0]
-        # if turn == self.piece_a:
-        pygame.draw.circle(self.screen, RED, (posx, int(SQUARESIZE/2)), self.radius)
     
     def handle_events(self):
         for event in pygame.event.get():
@@ -70,6 +63,12 @@ class Renderer:
                     return col
             pygame.display.update()
         return None
+    
+    def handle_game_end(self):
+        label = myfont.render("Player 2 wins!!", 1, YELLOW)
+        self.screen.blit(label, (40,10))
+        pygame.display.update()
+        pygame.time.wait(3000)
 
     def draw_board(self):
         for c in range(self.n_cols):

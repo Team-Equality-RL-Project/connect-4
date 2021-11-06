@@ -31,13 +31,15 @@ algo = Minimax()
 # Gameplay loop
 
 while not game_over:
+	curr_piece = turn
+
 	if turn == PLAYER:
-		# Get frame and events from pygame graphics renderer
-		clicked_col = renderer.handle_events()
-		if clicked_col:
-			if board.is_valid_location(clicked_col):
-				row = board.get_next_open_row(clicked_col)
-				board.drop_piece(row, clicked_col, PLAYER_PIECE)
+		# Get frame and events from pygame graphics renderer. Get the column clicked by the player
+		col = renderer.handle_events()
+		if col != None:
+			if board.is_valid_location(col):
+				row = board.get_next_open_row(col)
+				board.drop_piece(row, col, PLAYER_PIECE)
 
 				if board.is_winning_move(PLAYER_PIECE):
 					print('Player won')
@@ -68,4 +70,4 @@ while not game_over:
 			turn = turn % 2
 
 	# if game_over:
-		# pygame.time.wait(3000)
+		# renderer.handle_game_end(winner)
