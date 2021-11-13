@@ -1,7 +1,7 @@
 import math
 import random
 
-from board import EMPTY, PLAYER_PIECE, AI_PIECE
+from board import EMPTY, PLAYER1_PIECE, PLAYER2_PIECE
 
 class Minimax():
     def __init__(self):
@@ -9,9 +9,9 @@ class Minimax():
     
     def evaluate_window(self, window, piece):
         score = 0
-        opp_piece = PLAYER_PIECE
-        if piece == PLAYER_PIECE:
-            opp_piece = AI_PIECE
+        opp_piece = PLAYER1_PIECE
+        if piece == PLAYER1_PIECE:
+            opp_piece = PLAYER2_PIECE
 
         if window.count(piece) == 4:
             score += 100
@@ -62,24 +62,24 @@ class Minimax():
 
     def get_best_move(self, board, depth, alpha, beta, maximizingPlayer):
         valid_locations = board.get_valid_locations()
-        is_terminal = board.is_terminal_node(PLAYER_PIECE, AI_PIECE)
+        is_terminal = board.is_terminal_node(PLAYER1_PIECE, PLAYER2_PIECE)
         if depth == 0 or is_terminal:
             if is_terminal:
-                if board.is_winning_move(AI_PIECE):
+                if board.is_winning_move(PLAYER2_PIECE):
                     return (None, 100000000000000)
-                elif board.is_winning_move(PLAYER_PIECE):
+                elif board.is_winning_move(PLAYER1_PIECE):
                     return (None, -10000000000000)
                 else: # Game is over, no more valid moves
                     return (None, 0)
             else: # Depth is zero
-                return (None, self.score_position(board.get_state(), board.get_n_rows(), board.get_n_cols(), board.get_n_in_a_row(), AI_PIECE))
+                return (None, self.score_position(board.get_state(), board.get_n_rows(), board.get_n_cols(), board.get_n_in_a_row(), PLAYER2_PIECE))
         if maximizingPlayer:
             value = -math.inf
             column = random.choice(valid_locations)
             for col in valid_locations:
                 row = board.get_next_open_row(col)
                 b_copy = board.copy()
-                b_copy.drop_piece(row, col, AI_PIECE)
+                b_copy.drop_piece(row, col, PLAYER2_PIECE)
                 new_score = self.get_best_move(b_copy, depth-1, alpha, beta, False)[1]
                 if new_score > value:
                     value = new_score
@@ -95,7 +95,7 @@ class Minimax():
             for col in valid_locations:
                 row = board.get_next_open_row(col)
                 b_copy = board.copy()
-                b_copy.drop_piece(row, col, PLAYER_PIECE)
+                b_copy.drop_piece(row, col, PLAYER1_PIECE)
                 new_score = self.get_best_move(b_copy, depth-1, alpha, beta, True)[1]
                 if new_score < value:
                     value = new_score

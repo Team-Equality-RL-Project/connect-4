@@ -14,14 +14,15 @@ import math
 import board, renderer, minimax
 import random
 import math
-from board import Board, PLAYER_PIECE, AI_PIECE, PLAYER, AI
+from board import Board, PLAYER1_PIECE, PLAYER2_PIECE, PLAYER1, PLAYER2
 from renderer import Renderer
 
 # Implement the GameController class
 class GameController:
-    # Set the game playing strategy
-    def __init__(self, algo):
-        self.algo = algo
+    # Set two game playing strategies
+    def __init__(self, algo1, algo2=None):
+        self.algo1 = algo1
+        self.algo2 = algo2
     
     # Play the game using the set strategy
     def playGame(self):
@@ -31,23 +32,26 @@ class GameController:
         N_IN_A_ROW = 4
         board = Board(ROW_COUNT, COLUMN_COUNT, N_IN_A_ROW)
         board.print()
-        renderer = Renderer(ROW_COUNT, COLUMN_COUNT, PLAYER_PIECE, AI_PIECE)
+        renderer = Renderer(ROW_COUNT, COLUMN_COUNT, PLAYER1_PIECE, PLAYER2_PIECE)
         renderer.draw(board.get_state())
-        turn = random.randint(PLAYER, AI)
+        turn = random.randint(PLAYER1, PLAYER2)
         
         # Gameplay loop
         while not game_over:
             # Player's turn
             # Get frame and events from pygame graphics renderer. Get the column clicked by the player
-            if turn == PLAYER:
-                curr_piece = PLAYER_PIECE
-                col = renderer.handle_events()
-
-            # AI's turn
+            if turn == PLAYER1:
+                curr_piece = PLAYER1_PIECE
+                if (self.algo2 is None):
+                    col = renderer.handle_events()
+                else:
+                    col, score = self.algo2.get_best_move(board, 5, -math.inf, math.inf, True)
+                
+            # PLAYER2's turn
             # Use RL to get the best next move
-            if turn == AI and not game_over:
-                curr_piece = AI_PIECE
-                col, minimax_score = self.algo.get_best_move(board, 5, -math.inf, math.inf, True)
+            if turn == PLAYER2 and not game_over:
+                curr_piece = PLAYER2_PIECE
+                col, score = self.algo1.get_best_move(board, 5, -math.inf, math.inf, True)
 
             # Drop piece for current move
             if col != None and board.is_valid_location(col):
@@ -65,10 +69,10 @@ class GameController:
                 turn = turn % 2
 
             if game_over:
-                if curr_piece == PLAYER_PIECE:
-                    winner = 'PLAYER'
+                if curr_piece == PLAYER1_PIECE:
+                    winner = 'PLAYER1'
                 else:
-                    winner = 'AI'
+                    winner = 'PLAYER2'
 
                 # Prints out who won and waits 3 seconds before closing game
                 renderer.handle_game_end(winner)

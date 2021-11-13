@@ -1,10 +1,10 @@
 import numpy as np
 
 EMPTY = 0
-PLAYER_PIECE = 1
-AI_PIECE = 2
-PLAYER = 0
-AI = 1
+PLAYER1_PIECE = 1
+PLAYER2_PIECE = 2
+PLAYER1 = 0
+PLAYER2 = 1
 
 class Board:
     def __init__(self, n_rows, n_cols, n_in_a_row):
@@ -78,5 +78,5 @@ class Board:
                 if self.state[r][c] == piece and self.state[r-1][c+1] == piece and self.state[r-2][c+2] == piece and self.state[r-3][c+3] == piece:
                     return True
     
-    def is_terminal_node(self, PLAYER_PIECE, AI_PIECE):
-        return self.is_winning_move(PLAYER_PIECE) or self.is_winning_move(AI_PIECE) or len(self.get_valid_locations()) == 0
+    def is_terminal_node(self, PLAYER1_PIECE, PLAYER2_PIECE):
+        return self.is_winning_move(PLAYER1_PIECE) or self.is_winning_move(PLAYER2_PIECE) or len(self.get_valid_locations()) == 0

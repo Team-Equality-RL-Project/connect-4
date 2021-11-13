@@ -16,8 +16,8 @@ class Renderer:
         self.height = (n_rows+1) * SQUARESIZE
         self.size = (self.width, self.height)
         self.radius = int(SQUARESIZE / 2 - 5)
-        self.piece_a = piece_a # player piece
-        self.piece_b = piece_b # AI piece
+        self.piece_a = piece_a # player1 piece
+        self.piece_b = piece_b # player2 piece
 
         pygame.init()
         self.font = pygame.font.SysFont("monospace", 75)
