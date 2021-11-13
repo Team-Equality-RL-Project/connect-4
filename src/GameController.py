@@ -1,3 +1,13 @@
+# CMPE 260 Reinforcement Learning
+## Connect 4 game - GameController class
+##
+## This class implements the connect 4 game
+## It accepts a game playing player strategy and plays the game with it
+## 
+## Reference: https://github.com/KeithGalli/Connect4-Python
+### Team Members: Abhishek Bais, Haley Feng, Princy Joy, Shannon Phu
+
+# Import libraries and requisite classes
 import pygame
 import sys
 import math
@@ -7,10 +17,13 @@ import math
 from board import Board, PLAYER_PIECE, AI_PIECE, PLAYER, AI
 from renderer import Renderer
 
+# Implement the GameController class
 class GameController:
+    # Set the game playing strategy
     def __init__(self, algo):
         self.algo = algo
     
+    # Play the game using the set strategy
     def playGame(self):
         game_over = False
         ROW_COUNT = 6
