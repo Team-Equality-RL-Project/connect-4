@@ -2,7 +2,6 @@ import numpy as np
 import copy
 import time
 import random
-from board import AI_PIECE
 
 # Adapted from: http://mcts.ai/code/python.html by Christopher Yong
 # https://replit.com/talk/challenge/Connect-4-AI-using-Monte-Carlo-Tree-Search/10640
@@ -54,11 +53,11 @@ class Node:
 
 class MonteCarloTreeSearch():
     def __init__(self):
-        self.piece = AI_PIECE
+        pass
 
 
     def get_best_move(self, board):
-        self.currentNode = Node(piece=self.piece, board=board)
+        self.currentNode = Node(piece=board.current_player, board=board)
         return self.mcts(board, 20000, self.currentNode, 5)
 
 

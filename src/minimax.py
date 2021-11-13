@@ -47,7 +47,7 @@ class Minimax():
                 window = col_array[r:r+n_in_a_row]
                 score += self.evaluate_window(window, piece)
 
-        ## Score posiive sloped diagonal
+        ## Score positive sloped diagonal
         for r in range(board_n_rows-3):
             for c in range(board_n_cols-3):
                 window = [board_state[r+i][c+i] for i in range(n_in_a_row)]
@@ -60,7 +60,12 @@ class Minimax():
 
         return score
 
-    def get_best_move(self, board, depth, alpha, beta, maximizingPlayer):
+
+    def get_best_move(self, board):
+        return self.minmax(board, 5, -math.inf, math.inf, True)[0]
+        
+
+    def minmax(self, board, depth, alpha, beta, maximizingPlayer):
         valid_locations = board.get_valid_locations()
         is_terminal = board.is_terminal_node(PLAYER1_PIECE, PLAYER2_PIECE)
         if depth == 0 or is_terminal:
@@ -80,7 +85,7 @@ class Minimax():
                 row = board.get_next_open_row(col)
                 b_copy = board.copy()
                 b_copy.drop_piece(row, col, PLAYER2_PIECE)
-                new_score = self.get_best_move(b_copy, depth-1, alpha, beta, False)[1]
+                new_score = self.minmax(b_copy, depth-1, alpha, beta, False)[1]
                 if new_score > value:
                     value = new_score
                     column = col
@@ -96,7 +101,7 @@ class Minimax():
                 row = board.get_next_open_row(col)
                 b_copy = board.copy()
                 b_copy.drop_piece(row, col, PLAYER1_PIECE)
-                new_score = self.get_best_move(b_copy, depth-1, alpha, beta, True)[1]
+                new_score = self.minmax(b_copy, depth-1, alpha, beta, True)[1]
                 if new_score < value:
                     value = new_score
                     column = col

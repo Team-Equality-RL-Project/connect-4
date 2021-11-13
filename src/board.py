@@ -12,9 +12,21 @@ class Board:
         self.n_cols = n_cols
         self.n_in_a_row = n_in_a_row
         self.state = np.zeros((n_rows, n_cols))
+        self.prev_move = None
+        self.prev_player = None
+        self.current_player = None
+
+    def get_opponent(self, piece):
+        if piece == PLAYER1_PIECE:
+            return PLAYER2_PIECE
+        else:
+            return PLAYER1_PIECE
 
     def drop_piece(self, row, col, piece):
         self.state[row][col] = piece
+        self.prev_move = col
+        self.prev_player = piece
+        self.current_player = self.get_opponent(piece)
 
     def is_valid_location(self, col):
         return self.state[self.n_rows-1][col] == 0

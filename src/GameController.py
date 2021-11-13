@@ -42,16 +42,18 @@ class GameController:
             # Get frame and events from pygame graphics renderer. Get the column clicked by the player
             if turn == PLAYER1:
                 curr_piece = PLAYER1_PIECE
+                board.current_player = PLAYER1_PIECE
                 if (self.algo2 is None):
                     col = renderer.handle_events()
                 else:
-                    col, score = self.algo2.get_best_move(board, 5, -math.inf, math.inf, True)
+                    col = self.algo2.get_best_move(board)
                 
             # PLAYER2's turn
             # Use RL to get the best next move
             if turn == PLAYER2 and not game_over:
                 curr_piece = PLAYER2_PIECE
-                col, score = self.algo1.get_best_move(board, 5, -math.inf, math.inf, True)
+                board.current_player = PLAYER2_PIECE
+                col = self.algo1.get_best_move(board)
 
             # Drop piece for current move
             if col != None and board.is_valid_location(col):
