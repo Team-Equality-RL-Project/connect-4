@@ -18,19 +18,19 @@ GREEN = (0, 255, 0)
 BOARD_SIZE = (6,7)
 
 # Sensitivity Analysis tables
-ep_rewards_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
-ep_rewards_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+ep_outcomes_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+ep_outcomes_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
 
 def reset_alpha_gamma_tables():
-    ep_rewards_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
-    ep_rewards_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+    ep_outcomes_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+    ep_outcomes_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
     
 def show_alpha_sensitivity():
-    # Plot Rewards vs episodes for different values of ALPHA (lr)
-    plt.plot(ep_rewards_table_alpha['ep'], ep_rewards_table_alpha['one'], label="0.05")
-    plt.plot(ep_rewards_table_alpha['ep'], ep_rewards_table_alpha['two'], label="0.25")
-    plt.plot(ep_rewards_table_alpha['ep'], ep_rewards_table_alpha['three'], label="0.50")
-    plt.plot(ep_rewards_table_alpha['ep'], ep_rewards_table_alpha['four'], label="0.75")
+    # Plot outcome vs games for different values of ALPHA (lr)
+    plt.plot(ep_outcomes_table_alpha['ep'], ep_outcomes_table_alpha['one'], label="0.05")
+    plt.plot(ep_outcomes_table_alpha['ep'], ep_outcomes_table_alpha['two'], label="0.25")
+    plt.plot(ep_outcomes_table_alpha['ep'], ep_outcomes_table_alpha['three'], label="0.50")
+    plt.plot(ep_outcomes_table_alpha['ep'], ep_outcomes_table_alpha['four'], label="0.75")
     plt.legend(loc=4) #bottom right
     plt.title('Connect Four learning rate alpha sensitivity')
     plt.ylabel('Game outcomes in %')
@@ -38,13 +38,13 @@ def show_alpha_sensitivity():
     plt.show()
 
 def show_gamma_sensitivity():
-    # Plot Rewards vs episodes for different values of GAMMA (discount)
-    plt.plot(ep_rewards_table_gamma['ep'], ep_rewards_table_gamma['one'], label="0.98")
-    plt.plot(ep_rewards_table_gamma['ep'], ep_rewards_table_gamma['two'], label="0.75")
-    plt.plot(ep_rewards_table_gamma['ep'], ep_rewards_table_gamma['three'], label="0.50")
-    plt.plot(ep_rewards_table_gamma['ep'], ep_rewards_table_gamma['four'], label="0.25")
+    # Plot outcome vs games for different values of GAMMA (discount)
+    plt.plot(ep_outcomes_table_gamma['ep'], ep_outcomes_table_gamma['one'], label="0.25")
+    plt.plot(ep_outcomes_table_gamma['ep'], ep_outcomes_table_gamma['two'], label="0.50")
+    plt.plot(ep_outcomes_table_gamma['ep'], ep_outcomes_table_gamma['three'], label="0.75")
+    plt.plot(ep_outcomes_table_gamma['ep'], ep_outcomes_table_gamma['four'], label="0.98")
     plt.legend(loc=4) #bottom right
-    plt.title('Connect Four learning rate gamma sensitivity')
+    plt.title('Connect Four discount gamma sensitivity')
     plt.ylabel('Game outcomes in %')
     plt.xlabel('Game number')
     plt.show()

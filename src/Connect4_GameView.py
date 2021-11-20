@@ -207,39 +207,39 @@ class GameView(object):
                         p2_win = p2_win + 1
                     else:
                         draw = draw + 1
+                
                     count = count + 1
-                    
                     p1_wins.append(p1_win*100.0/num_games)
                     p2_wins.append(p2_win*100.0/num_games)
                     draws.append(draw*100.0/num_games)
                     counts.append(count)
                     
-                    # save episode rewards
-                    if (len(ep_rewards_table_alpha['ep']) < num_games):
-                        ep_rewards_table_alpha['ep'].append(iterations)
+                    # save episode outcomes
+                    if (len(ep_outcomes_table_alpha['ep']) < num_games):
+                        ep_outcomes_table_alpha['ep'].append(count)
             
-                    if (len(ep_rewards_table_gamma['ep']) < num_games):
-                        ep_rewards_table_gamma['ep'].append(iterations)
+                    if (len(ep_outcomes_table_gamma['ep']) < num_games):
+                        ep_outcomes_table_gamma['ep'].append(count)
         
-                    # save rewards for different values of alpha (lr)
+                    # save outcome for different values of alpha (lr)
                     if (exp_alpha == 1):
-                        ep_rewards_table_alpha['one'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_alpha['one'].append(p1_win*100.0/num_games)
                     elif (exp_alpha == 2):
-                        ep_rewards_table_alpha['two'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_alpha['two'].append(p1_win*100.0/num_games)
                     elif (exp_alpha == 3):
-                        ep_rewards_table_alpha['three'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_alpha['three'].append(p1_win*100.0/num_games)
                     elif (exp_alpha == 4):
-                        ep_rewards_table_alpha['four'].append(p1_win*100.0/num_games)
+                        ep_routcomes_table_alpha['four'].append(p1_win*100.0/num_games)
         
-                    # save rewards for different values of gamma (discount)
+                    # save outcome for different values of gamma (discount)
                     if (exp_gamma == 1):
-                        ep_rewards_table_gamma['one'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_gamma['one'].append(p1_win*100.0/num_games)
                     elif (exp_gamma == 2):
-                        ep_rewards_table_gamma['two'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_gamma['two'].append(p1_win*100.0/num_games)
                     elif (exp_gamma == 3):
-                        ep_rewards_table_gamma['three'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_gamma['three'].append(p1_win*100.0/num_games)
                     elif (exp_gamma == 4):
-                        ep_rewards_table_gamma['four'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_gamma['four'].append(p1_win*100.0/num_games)
 
                 if coin_inserted:
                     if game_mode == "single":
