@@ -229,7 +229,7 @@ class GameView(object):
                     elif (exp_alpha == 3):
                         ep_outcomes_table_alpha['three'].append(p1_win*100.0/num_games)
                     elif (exp_alpha == 4):
-                        ep_routcomes_table_alpha['four'].append(p1_win*100.0/num_games)
+                        ep_outcomes_table_alpha['four'].append(p1_win*100.0/num_games)
         
                     # save outcome for different values of gamma (discount)
                     if (exp_gamma == 1):
