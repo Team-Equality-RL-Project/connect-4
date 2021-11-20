@@ -114,12 +114,7 @@ For each of these games the different Computer Players will be configured with d
    iii.gamma   = [0.25, 0.5, 0.75, 0.98]
 
 #### Sprints
-The sprints directory contains the team's sprints 
- 1. Sprint1 - Week 1 sprint
- 2. Sprint2 - Week 2 sprint
- 3. Sprint3 - Week 3 sprint
- 4. Sprint4 - Week 4 sprint
- 5. Sprint5 - Week 5 sprint
+The 260_sprint_backlog.xlsx.pdf contains the team's weekly sprints 
  
 #### Deliverables
 The deliverables directory contains
