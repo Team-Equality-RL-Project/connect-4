@@ -245,7 +245,7 @@ class MiniMaxPlayer(Player):
         return score  
 
     def choose_action(self, state, actions, coin, board, game_logic, background):
-        minmax_algo = self.minmax(actions, coin, board, 6, -math.inf, math.inf, True, game_logic, background)
+        minmax_algo = self.minmax(actions, coin, board, 5, -math.inf, math.inf, True, game_logic, background)
         next_action = minmax_algo[0]
         if next_action == None:
             return random.choice(actions)

@@ -127,9 +127,11 @@ class GameView(object):
         p2_wins  = []
         draws    = []
         counts   = []
+        game_time = []
         num_games = iterations
         
         while (iterations > 0):
+            start_time = time.process_time()
             self.initialize_game_variables(game_mode, p1, p2, epsilon, alpha, gamma)
             self.background.fill(BLACK)
             self.game_board.draw(self.background)
@@ -195,6 +197,7 @@ class GameView(object):
                                 pass
                 
                 if game_over:
+                    end_time = time.process_time()
                     winner = self.game_logic.determine_winner_name()
                     winner_value = self.game_logic.get_winner()
                     if (winner_value > 0 and game_mode == "train"):
@@ -211,6 +214,7 @@ class GameView(object):
                     count = count + 1
                     p1_wins.append(p1_win*100.0/num_games)
                     p2_wins.append(p2_win*100.0/num_games)
+                    game_time.append(end_time - start_time)
                     draws.append(draw*100.0/num_games)
                     counts.append(count)
                     
@@ -254,14 +258,30 @@ class GameView(object):
                 
             iterations -= 1
             
-        if game_mode == "train":        
-            plt.ylabel('Game outcomes in %')
-            plt.xlabel('Game number')
-            plt.plot(counts, draws, 'r-', label='Draw')
-            plt.plot(counts, p1_wins, 'g-', label='Player 1 wins')
-            plt.plot(counts, p2_wins, 'b-', label='Player 2 wins')
-            plt.legend(loc="best", shadow=True, fancybox=True, framealpha =0.7)
+        if game_mode == "train":  
+            # Print Summary of Final Results
+            avg_time = sum(game_time)/len(game_time)
+            print('Player 1 Win Rate: ', p1_win/count)
+            print('Player 2 Win Rate: ', p2_win/count)
+            print('Average game play in %f seconds.' % avg_time)
             
+            fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(10, 6))
+            fig.tight_layout(pad=5)
+            
+            # Plot game outcome
+            axes[0].set(ylabel = 'Game outcomes in %')
+            axes[0].set(xlabel = 'Game number')
+            axes[0].plot(counts, draws, 'r-', label='Draw')
+            axes[0].plot(counts, p1_wins, 'g-', label='Player 1 wins')
+            axes[0].plot(counts, p2_wins, 'b-', label='Player 2 wins')
+            axes[0].legend(loc="best", shadow=True, fancybox=True, framealpha =0.7)
+            
+            # Plot game time
+            axes[1].set(ylabel = 'Game Playtime in seconds')
+            axes[1].set(xlabel = 'Game number')
+            axes[1].plot(counts, game_time, 'r-')
+            axes[1].axhline(y=avg_time, ls='--',color='black', label='average')
+            plt.legend()
             index = self.win_list.index(max(self.win_list))
             self.trainedComputer = self.p1 if index == 0 else self.p2
             self.main_menu()
