@@ -34,18 +34,19 @@ Sensitivity Analysis via hyper parameter tuning is performed on QLeaner in battl
    2. gamma   = [0.25, 0.5, 0.75, 0.98], epsilon = 0.2, alpha = 0.3
  
 The algorithms used by different Computer Players are briefly described below
-   1. QLearner
+    1. QLearner
+      Uses a reinforcement learning off-policy value based scheme based on the Bellman's equation to learn value of optimal 
+      policy regardless of action
 
    2. SarsaLearner
+      Uses a reinforcement learning on-policy value based scheme to learn the value of the optimal policy based on action  
+      derived from the current policy
 
    3. MonteCarlo
+      Uses Reinforcement Learning to learn directly game experiences without using any prior Markov Decision Process knowledge
 
    4. Minimax algorithm
-     Minimax algorithm is a recursive algorithm which is used in decision-making and game theory especially in AI game. It   
-     provides optimal moves for the player, assuming that the opponent is also playing optimally. For example, considering two 
-     opponents: Max and Min playing. Max will try to maximize the value, while Min will choose whatever value is the minimum. 
-     The algorithm performs a depth-first search (DFS) which means it will explore the complete game tree as deep as possible, 
-     all the way down to the leaf nodes.
+      Uses a backtracking, recursive algorithm used in game theory to make moves that result in maximum immediate gain
 
 #### Source File Structure
 The Connect4_Globals.py defines the global variables used by the game. 

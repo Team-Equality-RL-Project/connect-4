@@ -177,8 +177,9 @@ class SarsaLearningPlayer(Player):
                 reward = 1
             else:
                 reward = -2
+        
         prev_state = board.get_prev_state()
-        prev = self.getQ(prev_state, chosen_action)
+        prev = self.getQ(prev_state, chosen_action)     
         result_state = board.get_state()
         qnew = self.getQ(result_state, chosen_action)
         self.q[(prev_state, chosen_action)] = prev + self.alpha * ((reward + self.gamma*qnew) - prev)
