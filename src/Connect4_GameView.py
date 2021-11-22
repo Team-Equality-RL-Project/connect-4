@@ -23,7 +23,7 @@ class GameView(object):
         self.trainedComputer = None
         self.win_list = [0,0]
           
-    def initialize_game_variables(self, game_mode, p1, p2, epsilon, alpha, gamma):
+    def initialize_game_variables(self, game_mode, p1, p2, epsilon, alpha, gamma, exploration_coeff):
         """
         Initialize the game board and the GameLogic object
         """
@@ -50,7 +50,7 @@ class GameView(object):
             self.p1 = p1
             self.p2 = p2 
             
-    def main_menu(self, PlayerType_1="", PlayerType_2="", iterations=20, epsilon=0.2, alpha=0.3, gamma=0.9, exp_alpha=0, exp_gamma=0):
+    def main_menu(self, PlayerType_1="", PlayerType_2="", iterations=20, epsilon=0.2, alpha=0.3, gamma=0.9, exp_alpha=0, exp_gamma=0, exploration_coeff=1):
         """
         Display the main menu screen
         """
@@ -102,20 +102,20 @@ class GameView(object):
             p1 = HumanPlayer(first_coin_type)
             p2 = HumanPlayer(second_coin_type)
         else:
-            p1 = ComputerPlayer(first_coin_type, PlayerType_1, epsilon, alpha, gamma)
-            p2 = ComputerPlayer(second_coin_type, PlayerType_2, epsilon, alpha, gamma)
+            p1 = ComputerPlayer(first_coin_type, PlayerType_1, epsilon, alpha, gamma, exploration_coeff=exploration_coeff)
+            p2 = ComputerPlayer(second_coin_type, PlayerType_2, epsilon, alpha, gamma, exploration_coeff=exploration_coeff)
         
         if not play_game:
             pygame.quit()
             
         elif game_mode == "train":
-            self.run(game_mode, p1, p2, iterations, epsilon, alpha, gamma, exp_alpha, exp_gamma)
+            self.run(game_mode, p1, p2, iterations, epsilon, alpha, gamma, exp_alpha, exp_gamma, exploration_coeff=exploration_coeff)
         
         else:
             iterations = 1
-            self.run(game_mode, p1, p2, iterations, epsilon, alpha, gamma)
+            self.run(game_mode, p1, p2, iterations, epsilon, alpha, gamma, exploration_coeff=exploration_coeff)
 
-    def run(self, game_mode, p1=None, p2=None, iterations=1, epsilon=0.2, alpha=0.3, gamma=0.9, exp_alpha=0, exp_gamma=0):
+    def run(self, game_mode, p1=None, p2=None, iterations=1, epsilon=0.2, alpha=0.3, gamma=0.9, exp_alpha=0, exp_gamma=0, exploration_coeff=1):
         """
         Main loop in the game
         """
@@ -132,7 +132,7 @@ class GameView(object):
         
         while (iterations > 0):
             start_time = time.process_time()
-            self.initialize_game_variables(game_mode, p1, p2, epsilon, alpha, gamma)
+            self.initialize_game_variables(game_mode, p1, p2, epsilon, alpha, gamma, exploration_coeff=exploration_coeff)
             self.background.fill(BLACK)
             self.game_board.draw(self.background)
             game_over = False
@@ -224,6 +224,9 @@ class GameView(object):
             
                     if (len(ep_outcomes_table_gamma['ep']) < num_games):
                         ep_outcomes_table_gamma['ep'].append(count)
+
+                    if (len(ep_outcomes_table_exp_coeff['ep']) < num_games):
+                        ep_outcomes_table_exp_coeff['ep'].append(count)
         
                     # save outcome for different values of alpha (lr)
                     if (exp_alpha == 1):
@@ -244,6 +247,16 @@ class GameView(object):
                         ep_outcomes_table_gamma['three'].append(p1_win*100.0/num_games)
                     elif (exp_gamma == 4):
                         ep_outcomes_table_gamma['four'].append(p1_win*100.0/num_games)
+
+                    if (exploration_coeff == 0.8):
+                        ep_outcomes_table_exp_coeff['0.8'].append(p1_win*100.0/num_games)
+                    elif (exploration_coeff == 1):
+                        ep_outcomes_table_exp_coeff['1'].append(p1_win*100.0/num_games)
+                    elif (exploration_coeff == 1.4):
+                        ep_outcomes_table_exp_coeff['1.4'].append(p1_win*100.0/num_games)
+                    elif (exploration_coeff == 1.6):
+                        ep_outcomes_table_exp_coeff['1.6'].append(p1_win*100.0/num_games)
+
 
                 if coin_inserted:
                     if game_mode == "single":

@@ -20,10 +20,13 @@ BOARD_SIZE = (6,7)
 # Sensitivity Analysis tables
 ep_outcomes_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
 ep_outcomes_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+ep_outcomes_table_exp_coeff = {'ep': [], '0.8': [], '1': [], '1.4': [], '1.6': []}
 
 def reset_alpha_gamma_tables():
     ep_outcomes_table_alpha = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
     ep_outcomes_table_gamma = {'ep': [], 'one': [], 'two': [], 'three': [], 'four': []}
+    ep_outcomes_table_exp_coeff = {'ep': [], '0.8': [], '1': [], '1.4': [], '1.6': []}
+
     
 def show_alpha_sensitivity():
     # Plot outcome vs games for different values of ALPHA (lr)
@@ -49,3 +52,16 @@ def show_gamma_sensitivity():
     plt.xlabel('Game number')
     plt.show()
  
+
+def show_exp_coeff_sensitivity():
+    # Plot outcome vs games for different values of exploration coefficient
+    plt.plot(ep_outcomes_table_exp_coeff['ep'], ep_outcomes_table_exp_coeff['0.8'], label="0.8")
+    plt.plot(ep_outcomes_table_exp_coeff['ep'], ep_outcomes_table_exp_coeff['1'], label="1")
+    plt.plot(ep_outcomes_table_exp_coeff['ep'], ep_outcomes_table_exp_coeff['1.4'], label="1.4")
+    plt.plot(ep_outcomes_table_exp_coeff['ep'], ep_outcomes_table_exp_coeff['1.6'], label="1.6")
+    plt.legend(loc=4) #bottom right
+    plt.title('Connect Four exploration coefficient sensitivity')
+    plt.ylabel('Game outcomes in %')
+    plt.xlabel('Game number')
+    plt.show()
+

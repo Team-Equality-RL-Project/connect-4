@@ -4,7 +4,7 @@ from Connect4_Players import Player, RandomPlayer
 class ComputerPlayer(Player):
     """A class that represents an AI player in the game"""
     
-    def __init__(self, coin_type, player_type, epsilon=0.2, alpha=0.3, gamma=0.9):
+    def __init__(self, coin_type, player_type, epsilon=0.2, alpha=0.3, gamma=0.9, exploration_coeff=1):
         """
         Initialize an AI with the proper type which are one of Random, 
         Q learner and Sarsa learner
@@ -14,7 +14,7 @@ class ComputerPlayer(Player):
         elif (player_type == "sarsalearner"):
             self.player = SarsaLearningPlayer(coin_type, epsilon, alpha, gamma)
         elif (player_type == "montecarlo"):
-            self.player = MonteCarloPlayer(coin_type)
+            self.player = MonteCarloPlayer(coin_type, exploration_coeff)
         elif (player_type == "minimax"):
             self.player = MiniMaxPlayer(coin_type)
         else:
@@ -312,7 +312,7 @@ class MiniMaxPlayer(Player):
 # https://jyopari.github.io/MCTS
 
 class Node:
-    def __init__(self, piece, board, parent=None, move=None):
+    def __init__(self, piece, board, parent=None, move=None, exploration_coeff=1):
         self.board = board.copy()
         self.parent = parent
         self.move = move
@@ -321,6 +321,7 @@ class Node:
         self.wins = 0
         self.visits = 0
         self.player = piece 
+        self.exploration_coeff = exploration_coeff
         
     # return child with largest UCT value
     def selection(self):
@@ -331,16 +332,17 @@ class Node:
         # Nj is the number of times the child node has been visited.
         # Xj represents exploitation, as it is a large value when the win rate is high
         # Second term represents exploration, as it is large when the number of visits for that node have been low.
-        uct = lambda x: x.wins / x.visits + np.sqrt(2 * np.log(self.visits) / x.visits)
+        uct = lambda x: x.wins / x.visits + self.exploration_coeff * np.sqrt(2 * np.log(self.visits) / x.visits)
         return sorted(self.childNodes, key=uct)[-1]
 
     # return child when move is taken
     # remove move from current node
-    def expand(self, move, board):
+    def expand(self, move, board, exploration_coeff=1):
         child = Node(piece=board.prev_player, 
                      board=board,
                      parent=self,
-                     move=move)
+                     move=move,
+                     exploration_coeff=exploration_coeff)
         self.untriedMoves.remove(move)
         self.childNodes.append(child)
         return child
@@ -352,24 +354,25 @@ class Node:
 class MonteCarloPlayer(Player):
     """A class that represents an AI using montecarlo algorithm"""
     
-    def __init__(self, coin_type):
+    def __init__(self, coin_type, exploration_coeff):
         """
         Initialize a montecarlo player with coin type
         """
         self.currentNode = None
         Player.__init__(self, coin_type)
         self.cur_player = self.coin_type
-        self.prev_player = 2 if self.cur_player == 1 else 1  
+        self.prev_player = 2 if self.cur_player == 1 else 1 
+        self.exploration_coeff=exploration_coeff 
     
     def choose_action(self, state, actions, coin, board, game_logic, background):
         board.prev_player = self.prev_player
         board.current_player = self.cur_player
 
-        self.currentNode = Node(piece=board.prev_player,board=board)
+        self.currentNode = Node(piece=board.prev_player,board=board, exploration_coeff=self.exploration_coeff)
         return self.mcts(actions, board, 20000, self.currentNode, coin, game_logic, background, 5)
 
     def mcts(self, actions, board, itermax, currentNode, coin, game_logic, background, timeout=5):
-        rootnode = Node(piece=board.prev_player,board=board)
+        rootnode = Node(piece=board.prev_player,board=board, exploration_coeff=self.exploration_coeff)
         if currentNode is not None: rootnode = currentNode
 
         start = time.perf_counter()
@@ -390,7 +393,7 @@ class MonteCarloPlayer(Player):
                 col = random.choice(node.untriedMoves)
                 row = state.determine_row_to_insert(col)
                 state.drop_piece(row, col, state.current_player)
-                node = node.expand(col, state)
+                node = node.expand(col, state, self.exploration_coeff)
 
             # rollout
             while state.get_available_actions():
