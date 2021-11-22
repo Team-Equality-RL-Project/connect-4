@@ -119,9 +119,9 @@ The 260_sprint_backlog.xlsx.pdf contains the team's weekly sprints
  
 #### Deliverables
 The deliverables directory contains
- 1. Connect4.ppt - The team presentation
- 2. Connect4.pdf - The team report
- 3. Connect4.mp3 - The team presentation, demo video
+ 1. Project_Presentation.ppt.pdf - The team project presentation
+ 2. Project_Report.pdf           - The team project report
+ 3. Connect4.mp3                 - The team presentation video
  
 #### References:
 1. https://github.com/ShekMaha/connect4-reinforcement-learning
