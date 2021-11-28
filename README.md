@@ -1,19 +1,30 @@
 ## CMPE 260 Reinforcement Learning
-####  Project: Connect Four
+#### Course Instructor: Prof. Jahan Ghofraniha
+#### Term Project: Connect Four
+#### Team Members: Abhishek Bais, Haley Feng, Princy Joy, Shannon Phu
 
 ####  Project Summary: 
 Connect Four is a two player game in which players select different colored circular pieces, take turns to drop them in a 
 6x7 grid. The first player to place four of their pieces consecutively in a row, column, or a diagonal line wins. A 
-computer’s agent can learn to play Connect Four using reinforcement learning techniques, compete against human opponents 
+computer agent can learn to play Connect Four using reinforcement learning techniques, compete against human opponents 
 and place pieces to win the game.
 
-#### Team Members: Abhishek Bais, Haley Feng, Princy Joy, Shannon Phu
+#### Problem Statement:
+1. Simulate a real-life Connect Four game playing experience for a human player against a computer player
+2. Train reinforcement learning guided computer players implementing the following algorithms to play the game
+     i. Monte Carlo Algorithm
+    ii. Q Learning Algorithm
+   iii. Sarsa Learning Algorithm
+where, the training is done via N battles computer player that makes random moves and via battles against a
+computer player that implements a game theory guided algorithm named Minimax.
+3. Compare and contrast the performance of the reinforcement learning guided computer players on win-rate
+   and efficiency (average play time).
 
-#### Game Details
+#### Game Details:
 The game can be played in three modes, namely
-   1. SinglePlayer Mode - Human Player vs QLearning Player
+   1. SinglePlayer Mode - Human Player vs Computer Player
    2. MultiPlayer Mode  - Human Player vs Human Player
-   3. Trainer Mode      - Computer Player vs Computer Player 
+   3. Trainer Mode      - Reinforcement Learning Guided Computer Player vs Computer Player (Random), Computer Player (Minimax)
   
    where,
    1. Human Player      - Accepts user input
@@ -29,10 +40,20 @@ Baseline hyper parameters for QLearner, SarsaLearner players are
    2. QLearner, SarsaLearner alpha   - 0.3
    3. QLearner, SarsaLearner gamma   - 0.9
    
-Sensitivity Analysis via hyper parameter tuning is performed on QLeaner in battles against Random Move player with
-   1. alpha   = [0.05, 0.25, 0.5, 0.75], epsilon = 0.2, gamma = 0.9
-   2. gamma   = [0.25, 0.5, 0.75, 0.98], epsilon = 0.2, alpha = 0.3
- 
+To get best results, hyper parameter tuning was performed on Q Leaner, Sarsa Learner for
+   1. alpha or learning rate for values [0.05, 0.25, 0.5, 0.75], with epsilon = 0.2
+   2. gamma or discount factor for values [0.25, 0.5, 0.75, 0.98], with epsilon = 0.2 on top of alpha tuning
+
+To get best results, hyper parameter tuning was performed on Monte Carlo learner for
+   1. Exploration coefficient for values [0.8, 1, 1.4, 1.6]
+The Monte Carlo is a tree-search algorithm and the exploration coefficient controls the amount of search to perform
+   1. Smaller Exploration Coefficient values lead to greater exploitation i.e., visited nodes are revisited
+   2. Large Exploration Coefficient values lead to greater exploration i.e., new nodes are visited
+
+The Sensitivity Analysis was performed by battling Qlearner, SarsaLearner, and Monte Carlo Player for different 
+values of hyperparamers against a Computer Agent that made random moves.
+
+#### Algorithms Implemented:
 The algorithms used by different Computer Players are briefly described below
     1. QLearner
       Uses a reinforcement learning off-policy value based scheme based on the Bellman's equation to learn value of optimal 
@@ -46,8 +67,20 @@ The algorithms used by different Computer Players are briefly described below
       Uses Reinforcement Learning to learn directly game experiences without using any prior Markov Decision Process knowledge
 
    4. Minimax algorithm
-      Uses a backtracking, recursive algorithm used in game theory to make moves that result in maximum immediate gain
+      Uses a backtracking, recursive algorithm commonly used in game theory to make moves that result in maximum immediate gain
 
+#### Battles performed:
+The following battles will be performed to train the different reinforcement learning guided computer players
+  1. Qlearner     vs Random Move Player
+  2. Qlearner     vs Minimax Player
+  3. SarsaLearner vs Random Move Player
+  4. SarsaLearner vs Minimax Player
+  5. MonteCarlo   vs Random Move Player
+  6. MonteCarlo   vs Minimax Player
+  
+  In addition, the different reinforcement learning guided computer players were also battled against each other
+  to compare and contrast their performance measured in terms of win-rate and efficiency (average play time).
+  
 #### Source File Structure
 The Connect4_Globals.py defines the global variables used by the game. 
 It includes
@@ -88,32 +121,6 @@ It includes
 #### To play the game
 Run src/Connect4_Play.ipynb
 
-The following battles will be performed between different players 
-For each of these games the different Computer Players will be configured with default hyper parameters 
-  1. Qlearner     vs Random Move Player
-  2. SarsaLearner vs Random Move Player
-  3. Qlearner     vs SarsaLeaner Player
-  4. MonteCarlo   vs Random Move Player
-  5. MonteCarlo   vs Qlearner Player
-  6. MonteCarlo   vs SarsaLearner Player
-  7. Minimax      vs Random Move Player
-  8. Minimax      vs Qlearner Player
-  9. Minimax      vs SarsaLearner Player
-  
- The Sensitivity Analysis is performed by battling Qlearner, SarsaLearner for different values of hyperparamers
-  1. Qlearner vs Random Move Player for different hyper params (alpha, gamma) 
-  2. SarsaLearner vs Random Move Player for different hyper params (alpha, gamma)
-   
-   Alpha sensitivity analysis is performed for
-    i. alpha   = [0.05, 0.25, 0.5, 0.75]
-   ii. epsilon = 0.2
-   iii.gamma   = 0.9
-   
-   Gamma sensitivity analysis is performed for
-    i. alpha   = 0.3
-   ii. epsilon = 0.2
-   iii.gamma   = [0.25, 0.5, 0.75, 0.98]
-
 #### Sprints
 The 260_sprint_backlog.xlsx.pdf contains the team's weekly sprints 
  
@@ -121,7 +128,7 @@ The 260_sprint_backlog.xlsx.pdf contains the team's weekly sprints
 The deliverables directory contains
  1. Project_Presentation.ppt.pdf - The team project presentation
  2. Project_Report.pdf           - The team project report
- 3. Connect4.mp3                 - The team presentation video
+ 3. Project_Video.mp4            - The team presentation video
  
 #### References:
 1. https://github.com/ShekMaha/connect4-reinforcement-learning
