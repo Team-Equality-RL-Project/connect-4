@@ -82,12 +82,12 @@ The following battles will be performed to train the different reinforcement lea
   to compare and contrast their performance measured in terms of win-rate and efficiency (average play time).
   
 #### Source File Structure
-The Connect4_Globals.py defines the global variables used by the game. 
+The [Connect4_Globals.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Globals.py) defines the global variables used by the game. 
 It includes
    1. Board size
    2. Color of coins 
 
-The Connect4_Utilities.py defines utlity classes used by the game. 
+The [Connect4_Utilities.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Utilities.py) defines utlity classes used by the game. 
 It includes
    1. Slot                -  A position on the board
    2. Board               -  The 6x7 connect 4 playground
@@ -95,8 +95,8 @@ It includes
    4. SlotTrackerNode     -  A class that represents a internal node in the graph representation of the board
    5. ColumnFullException -  A class used to throw exceptions should coins drop in filled board positions
 
-The Connect4_Players.py defines the players who can play the game. 
-The Connect4_RLPlayers.py defines the types of computer players who can play the game. 
+The [Connect4_Players.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Players.py) defines the players who can play the game. 
+The [Connect4_RLPlayers.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_RLPlayers.py) defines the types of computer players who can play the game. 
 It includes
    1. Human Player       - Accepts user input
    2. Computer Player    - Is of 5 types namely:
@@ -106,20 +106,20 @@ It includes
      iv.  MonteCarlo     - Picks next move based on MonteCarlo algorithm
       v.   Minimax       - Picks next move based on Minimax algorithm
     
-The Connect4_GameLogic.py defines the game logic.
+The [Connect4_GameLogic.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_GameLogic.py) defines the game logic.
 It includes 
   1. Game winning cond.  - A sequence of 4 coins in a row (horizontal, vertical or diagonal)
   2. Game state          - Check whether the game is over?
   3. Game outcome        - Determine who won the game (red coin or blue coin) player or tie 
 
-The Connect4_GameView.py configures the game.
+The [Connect4_GameView.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_GameView.py) configures the game.
 It includes
   1. Game Menu           - The game graphic 
   2. Game Play Mode      - Pick the mode of play (SingePlayer, MultiPlayer or Trainer)  
   3. Game Setup and Play - Sets up the game between players and starts the game  
 
 #### To play the game
-Run src/Connect4_Play.ipynb
+Run [src/Connect4_Play.ipynb](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Play.ipynb)
 
 #### Sprints
 The [Team Sprint](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/sprints/260_sprint_backlog.xlsx.pdf) contains the team's weekly sprints 
