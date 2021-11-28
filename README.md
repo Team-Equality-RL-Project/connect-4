@@ -95,7 +95,7 @@ It includes
    4. SlotTrackerNode     -  A class that represents a internal node in the graph representation of the board
    5. ColumnFullException -  A class used to throw exceptions should coins drop in filled board positions
 
-The [Connect4_Players.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Players.py) defines the players who can play the game. 
+The [Connect4_Players.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Players.py) defines the players who can play the game.   
 The [Connect4_RLPlayers.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_RLPlayers.py) defines the types of computer players who can play the game. 
 It includes
    1. Human Player       - Accepts user input
