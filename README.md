@@ -11,14 +11,14 @@ and place pieces to win the game.
 
 #### Problem Statement:
 1. Simulate a real-life Connect Four game playing experience for a human player against a computer player
-2. Train reinforcement learning guided computer players implementing the following algorithms to play the game
-     i. Monte Carlo Algorithm
-    ii. Q Learning Algorithm
-   iii. Sarsa Learning Algorithm
+2. Train reinforcement learning guided computer players implementing the following algorithms to play the game  
+     i. Monte Carlo Algorithm  
+    ii. Q Learning Algorithm  
+   iii. Sarsa Learning Algorithm  
 where, the training is done via N battles computer player that makes random moves and via battles against a
-computer player that implements a game theory guided algorithm named Minimax.
+computer player that implements a game theory guided algorithm named Minimax.  
 3. Compare and contrast the performance of the reinforcement learning guided computer players on win-rate
-   and efficiency (average play time).
+   and efficiency (average play time).  
 
 #### Game Details:
 The game can be played in three modes, namely
