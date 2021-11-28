@@ -96,15 +96,14 @@ It includes
    5. ColumnFullException -  A class used to throw exceptions should coins drop in filled board positions
 
 The [Connect4_Players.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_Players.py) defines the players who can play the game.   
-The [Connect4_RLPlayers.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_RLPlayers.py) defines the types of computer players who can play the game. 
-It includes
-   1. Human Player       - Accepts user input
-   2. Computer Player    - Is of 5 types namely:
-      i.   Random        - Picks next move randomly from available locations
-     ii.  QLearner       - Picks next move based on QLearning
-    iii. SarsaLearner    - Picks next move based on SarsaLearning
-     iv.  MonteCarlo     - Picks next move based on MonteCarlo algorithm
-      v.   Minimax       - Picks next move based on Minimax algorithm
+The [Connect4_RLPlayers.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_RLPlayers.py) defines the types of computer players who can play the game. These includes  
+   1. Human Player       - Accepts user input  
+   2. Computer Player    - These are of 5 types namely:  
+      i.   Random        - Picks next move randomly from available locations  
+     ii.  QLearner       - Picks next move based on QLearning  
+    iii. SarsaLearner    - Picks next move based on SarsaLearning  
+     iv.  MonteCarlo     - Picks next move based on MonteCarlo algorithm  
+      v.   Minimax       - Picks next move based on Minimax algorithm  
     
 The [Connect4_GameLogic.py](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/src/Connect4_GameLogic.py) defines the game logic.
 It includes 
