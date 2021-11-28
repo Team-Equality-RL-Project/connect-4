@@ -15,8 +15,8 @@ and place pieces to win the game.
      i. Monte Carlo Algorithm  
     ii. Q Learning Algorithm  
    iii. Sarsa Learning Algorithm  
-where, the training is done via N battles computer player that makes random moves and via battles against a
-computer player that implements a game theory guided algorithm named Minimax.  
+   where, the training is done via N battles computer player that makes random moves and via battles against a
+   computer player that implements a game theory guided algorithm named Minimax.  
 3. Compare and contrast the performance of the reinforcement learning guided computer players on win-rate
    and efficiency (average play time).  
 
@@ -27,13 +27,13 @@ The game can be played in three modes, namely
    3. Trainer Mode      - Reinforcement Learning Guided Computer Player vs Computer Player (Random), Computer Player (Minimax)
   
    where,
-   1. Human Player      - Accepts user input
-   2. Computer Player   - Is of 5 types namely:
-      i. Random         - Picks next move randomly from available locations
-     ii. QLearner       - Picks next move based on QLearning
-    iii. SarsaLearner   - Picks next move based on SarsaLearning
-     iv. MonteCarlo     - Picks next move based on MonteCarlo algorithm
-      v. Minimax        - Picks next move based on Minimax algorithm
+   1. Human Player      - Accepts user input  
+   2. Computer Player   - Is of 5 types namely:  
+      i. Random         - Picks next move randomly from available locations  
+     ii. QLearner       - Picks next move based on QLearning  
+    iii. SarsaLearner   - Picks next move based on SarsaLearning  
+     iv. MonteCarlo     - Picks next move based on MonteCarlo algorithm  
+      v. Minimax        - Picks next move based on Minimax algorithm  
 
 Baseline hyper parameters for QLearner, SarsaLearner players are 
    1. QLearner, SarsaLearner epsilon - 0.2 
