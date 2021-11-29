@@ -126,7 +126,7 @@ The [Team Sprint](https://github.com/Team-Equality-RL-Project/connect-4/blob/mas
 #### Deliverables
 The deliverables directory contains
  1. [Project Presentation](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Presentation.pptx.pdf) - The team project presentation
- 2. Project_Report.pdf           - The team project report
+ 2. [Project_Report.pdf](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Report.pdf)              - The team project report
  3. Project_Video.mp4            - The team presentation video
  
 #### References:
