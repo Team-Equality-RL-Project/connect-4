@@ -3,6 +3,12 @@
 #### Term Project: Connect Four
 #### Team Members: Abhishek Bais, Haley Feng, Princy Joy, Shannon Phu
 
+#### Deliverables
+The deliverables directory contains  
+ 1. [Project Presentation](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Presentation.pptx.pdf) - The team project presentation  
+ 2. [Project_Report.pdf](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Report.pdf)              - The team project report  
+ 3. [Project_Video.mp4](https://drive.google.com/file/d/1Imy7aCzQgvNGrhF0fseV7zYNACOIOnkF/view?usp=sharing)                              - The team presentation video  
+
 ####  Project Summary: 
 Connect Four is a two player game in which players select different colored circular pieces, take turns to drop them in a 
 6x7 grid. The first player to place four of their pieces consecutively in a row, column, or a diagonal line wins. A 
@@ -122,13 +128,7 @@ Run [src/Connect4_Play.ipynb](https://github.com/Team-Equality-RL-Project/connec
 
 #### Sprints
 The [Team Sprint](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/sprints/260_sprint_backlog.xlsx.pdf) contains the team's weekly sprints 
- 
-#### Deliverables
-The deliverables directory contains
- 1. [Project Presentation](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Presentation.pptx.pdf) - The team project presentation
- 2. [Project_Report.pdf](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Report.pdf)              - The team project report
- 3. Project_Video.mp4            - The team presentation video
- 
+  
 #### References:
 1. https://github.com/ShekMaha/connect4-reinforcement-learning
 2. https://github.com/KeithGalli/Connect4-Python
