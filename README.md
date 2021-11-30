@@ -7,7 +7,7 @@
 The deliverables directory contains  
  1. [Project Presentation](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Presentation.pptx.pdf) - The team project presentation  
  2. [Project_Report.pdf](https://github.com/Team-Equality-RL-Project/connect-4/blob/master/deliverables/Project_Report.pdf)              - The team project report  
- 3. [Project_Video.mp4](https://drive.google.com/file/d/1Imy7aCzQgvNGrhF0fseV7zYNACOIOnkF/view?usp=sharing)                              - The team presentation video  
+ 3. [Project_Video.mp4](https://drive.google.com/file/d/1G4KXHT_4IlumZqT8emNJzn-_Onc28SvN/view?usp=sharing)                              - The team presentation video  
 
 ####  Project Summary: 
 Connect Four is a two player game in which players select different colored circular pieces, take turns to drop them in a 
